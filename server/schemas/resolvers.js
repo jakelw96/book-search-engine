@@ -43,9 +43,9 @@ const resolvers = {
             if (context.user) {
                 const addBookArr = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: { authors, description, title, bookId, image} } },
+                    { $addToSet: { savedBooks: { authors, description, title, bookId, image } } },
                     { new: true }
-                );
+                ).populate('savedBooks')
 
                 return addBookArr
             }
